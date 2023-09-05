@@ -1,0 +1,79 @@
+---
+title: "API Introduction"
+output: html_notebook
+---
+
+## API Packages
+
+```{r}
+api_list <- c("httr","jsonlite")
+for(i in api_list){
+  if(!(i %in% installed.packages())){
+    install.packages(i)
+  }
+}
+library(httr)
+library(jsonlite)
+```
+
+## Types of API Requests
+- GET, PUT, and POST (likely more).
+
+## API Requests from RapidAPI
+Link: https://rapidapi.com/api-sports/api/api-nba
+```{r}
+url <- "https://api-nba-v1.p.rapidapi.com/seasons"
+
+api_response <- VERB("GET", url, 
+            add_headers('X-RapidAPI-Key' = '76eabd1af5msh16f424cb3bd8d48p129363jsn4c70ec1d9c93', 
+            'X-RapidAPI-Host' = 'api-nba-v1.p.rapidapi.com'), 
+            content_type("application/octet-stream"))
+api_response
+content(api_response, "text")
+```
+
+## WHAT Happens 
+      Response [https://api-nba-v1.p.rapidapi.com/seasons]
+      Date: 2023-09-04 20:05
+      Status: 200
+      Content-Type: application/json
+      Size: 112 B
+- The status of the response should be 200 indicating that the request was successful and a response was generated.
+- There should be information on the content type as well.
+- A quick preview of the content can be achieved by using the code snippet below and the output is shown for demonstration purposes.
+
+      content(api_response, "text")
+      [1] "{\"get\":\"seasons\\/\",\"parameters\":[],\"errors\":[],\"results\":       8,\"response\":[2015,2016,2017,2018,2019,2020,2021,2022]}"
+
+## WHAT to do with the Data
+- Original response is raw UNICODE data found in the response list
+```{r}
+typeof(api_response)
+```
+## WHAT is a json format?
+- The json format which I initially learned about when studying python through the University of Michigan Runestone platform is a format of storing data as key-value pairs often also referred to as the dictionary format.
+
+      {
+        "name": "swaggy T"
+        "number of years": 32
+      }
+
+## How to get to JSON format?
+```{r}
+rawToChar(api_response$content)
+```
+
+- The output here is not a typical looking dictionary or json format, rather a character vector that resembles the JSON format
+
+## How to get usable data
+```{r}
+nba_data <- fromJSON(rawToChar(api_response$content))
+names(nba_data)
+head(nba_data)
+```
+
+## Caveat
+- As seen with the NBA seasons response, things did not work out as planned based on the output.
+- After restarting the system, a request will be made to another API hosted by RapidAPI
+
+# Results from the new attempt
