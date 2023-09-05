@@ -3,6 +3,7 @@ title: "API Introduction"
 output: html_notebook
 ---
 
+
 ## API Packages
 
 ```{r}
@@ -25,7 +26,7 @@ Link: https://rapidapi.com/api-sports/api/api-nba
 url <- "https://api-nba-v1.p.rapidapi.com/seasons"
 
 api_response <- VERB("GET", url, 
-            add_headers('X-RapidAPI-Key' = '76eabd1af5msh16f424cb3bd8d48p129363jsn4c70ec1d9c93', 
+            add_headers('X-RapidAPI-Key' = Sys.getenv('RAPID_API'), 
             'X-RapidAPI-Host' = 'api-nba-v1.p.rapidapi.com'), 
             content_type("application/octet-stream"))
 api_response
@@ -66,11 +67,15 @@ rawToChar(api_response$content)
 - The output here is not a typical looking dictionary or json format, rather a character vector that resembles the JSON format
 
 ## How to get usable data
+
 ```{r}
 nba_data <- fromJSON(rawToChar(api_response$content))
 nba_data <- as.data.frame(nba_data$response)
 print(nba_data)
 ```
+
+- Try using the janitor package (perhaps use tidyverse to pipe into clean_names()) to clean the data.
+- Did not work for me and likely won't work for you. 
 
 ## Conclusions
 - Demonstrated the use of R functions httr and jsonlite as clients for APIs hosted by RapidAPI.
