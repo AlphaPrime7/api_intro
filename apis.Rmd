@@ -68,12 +68,11 @@ rawToChar(api_response$content)
 ## How to get usable data
 ```{r}
 nba_data <- fromJSON(rawToChar(api_response$content))
-names(nba_data)
-head(nba_data)
+nba_data <- as.data.frame(nba_data$response)
+print(nba_data)
 ```
 
-## Caveat
-- As seen with the NBA seasons response, things did not work out as planned based on the output.
-- After restarting the system, a request will be made to another API hosted by RapidAPI
-
-# Results from the new attempt
+## Conclusions
+- Demonstrated the use of R functions httr and jsonlite as clients for APIs hosted by RapidAPI.
+- Demonstrated fine skill in observing the output and determining the right subset approach in obtaining desired data from chosen APIs
+- Next will be using these APIs to build apps that automatically update data
