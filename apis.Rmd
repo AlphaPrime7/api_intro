@@ -5,6 +5,7 @@ output:
     df_print: paged
 ---
 
+[![Project status](https://www.repostatus.org/badges/latest/concept.svg)](https://github.com/AlphaPrime7/api_intro) [![license](https://img.shields.io/badge/RapidAPI-Introduction?label=API)](https://github.com/AlphaPrime7/api_intro)
 
 ## API Packages
 

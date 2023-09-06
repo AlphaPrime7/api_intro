@@ -20,9 +20,10 @@ rapidapi_signup <- function(url="https://rapidapi.com/auth/sign-up"){
 }
 
 #SEASONS
-url <- "https://api-nba-v1.p.rapidapi.com/seasons"
-renv_key <- Sys.getenv('RAPID_API')
 host <- 'api-nba-v1.p.rapidapi.com' #host stays the same
+renv_key <- Sys.getenv('RAPID_API')
+
+url <- "https://api-nba-v1.p.rapidapi.com/seasons"
 
 rapidapi_response <- function(url,host, renv_key){
   library(httr)

@@ -1,0 +1,11 @@
+{
+  "rapidapi_host": "YOURVALUE.YOURVALUE.rapidapi.com", 
+  "key": "YOURVALUE",
+  "base_url": "https://YOURVALUE.p.rapidapi.com/v1/",
+  "displayUserAPIs": true,
+  "displayTeamAPIs": true,
+  "displayPublicAPIs": true,
+  "displayPrivateAPIs": true,
+  "displayCategory": "Other",
+  "helpForDisplayCategoryField": "enter 'all' above to display APIs from all categories"
+}
